@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('plan') {
       steps {
-        sh 'echo "I will Build it here"'
+        sh 'echo "I will Scan plan here"'
       }
     }
     stage('code') {
@@ -70,6 +70,13 @@ pipeline {
         stage('Automation Suite') {
           steps {
             sh 'echo  "Run Regression Test"'
+          }
+        }
+
+
+        stage('QALT') {
+          steps {
+            sh 'echo  "Run Load Test"'
           }
         }
 
