@@ -1,13 +1,18 @@
 pipeline {
   agent any
   stages {
-    stage('build') {
+    stage('plan') {
       steps {
         sh 'echo "I will Build it here"'
       }
     }
+    stage('code') {
+      steps {
+        sh 'echo "I will Check Security Leaks and Secrets here"'
+      }
+    }
 
-    stage('Unit Test') {
+    stage('build') {
       parallel {
         stage('Unit Test') {
           steps {
@@ -60,7 +65,7 @@ pipeline {
       }
     }
 
-    stage('Automation Suite') {
+    stage('Test') {
       parallel {
         stage('Automation Suite') {
           steps {
@@ -77,11 +82,17 @@ pipeline {
       }
     }
 
-    stage('Deploy - Stage') {
+    stage('Release- Stage') {
       parallel {
         stage('Deploy - Stage') {
           steps {
             sh 'echo "deploy Staging"'
+          }
+        }
+
+        stage('Artifact Scanning') {
+          steps {
+            sh 'echo "Run a Infra Smoke test"'
           }
         }
 
