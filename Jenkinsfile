@@ -115,6 +115,12 @@ pipeline {
           }
         }
 
+        stage('Patch Management Test') {
+          steps {
+            sh 'echo "Vulnerable Test"'
+          }
+        }
+
       }
     }
 
